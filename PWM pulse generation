@@ -1,0 +1,26 @@
+#include <TimerOne.h>
+ 
+const char SET_PERIOD_HEADER      = 'p';
+const char SET_FREQUENCY_HEADER   = 'f';
+const char SET_PULSE_WIDTH_HEADER = 'w';
+const char SET_DUTY_CYCLE_HEADER  = 'c';
+ 
+ 
+#define pwmRegister OCR1A    // the logical pin, can be set to OCR1B
+const int   outPin =  9;     // the physical pin
+ 
+long period = 20;     // the period in microseconds
+int duty = 128;         // duty as a range from 0 to 1024, 512 is 50% duty cycle
+ 
+int prescale[] = {0,1,8,64,256,1024}; // the range of prescale values
+ 
+void setup() {
+  Serial.begin(9600);
+  pinMode(outPin, OUTPUT);
+  Timer1.initialize(period);        // initialize timer1, 1000 microseconds
+  Timer1.pwm(9, duty);              // setup pwm on pin 9, 50% duty cycle
+}
+ 
+void loop() {
+   
+}
